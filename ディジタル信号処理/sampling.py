@@ -30,7 +30,7 @@ print("")
 # 「 データ数(サンプリング周期) >= 元信号の周期 * 2 」 でサンプリングした時、元信号に復元できる。
 for i in [128, 32, 18, 17, 16, 15, 14, 12, 8]:
     N = i  # データ数
-    sample_wave = signal(N, 8, 0)  # サンプリング信号 周期2
+    sample_wave = signal(N, 8, 0)  # サンプリング信号
 
     # 高速フーリエ変換(FFT)
     F = np.fft.fft(sample_wave)
