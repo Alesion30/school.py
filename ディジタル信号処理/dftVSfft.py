@@ -39,10 +39,11 @@ plt.show()
 print("")
 
 # %%
-N = 2 ** 10  # データ数
-sample_wave = signal(N, 8, 0)  # サンプリング信号
+freq = 2**3
+N = 2**10  # データ数
+sample_wave = signal(N, freq, 0)  # サンプリング信号
 
-print("freqency: 8[Hz]")
+print("freqency: {}[Hz]".format(freq))
 print("Number of samples: {}個".format(N))
 
 # 離散フーリエ変換(DFT)
@@ -64,7 +65,7 @@ ratio = dft_time / fft_time
 print("ratio: {}倍".format(int(ratio)))
 
 # %%
-print("freqency: 8[Hz]")
+print("freqency: {}[Hz]".format(freq))
 print("Number of samples: {}個".format(N))
 
 # グラフ表示
