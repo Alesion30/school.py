@@ -34,7 +34,7 @@ for i in [128, 32, 18, 17, 16, 15, 14, 12, 8]:
 
     # 高速フーリエ変換(FFT)
     F = np.fft.fft(sample_wave)
-    # F[floor(0.5 * N) + 1:] = 0 + 0j  # アンチエリアジング
+    # F[floor(0.5 * N) + 1:] = 0 + 0j
     F_abs = np.abs(F)
 
     # # 高速逆フーリエ変換

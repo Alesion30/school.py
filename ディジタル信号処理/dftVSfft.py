@@ -49,14 +49,14 @@ print("Number of samples: {}個".format(N))
 # 離散フーリエ変換(DFT)
 start = time.time()
 D = DFT(sample_wave)
-D[int(0.5 * N) + 1:] = 0 + 0j  # アンチエリアジング
+D[int(0.5 * N) + 1:] = 0 + 0j
 dft_time = time.time() - start
 print("dft time: {}[s]".format(dft_time))
 
 # 高速フーリエ変換(FFT)
 start = time.time()
 F = FFT(sample_wave)
-F[int(0.5 * N) + 1:] = 0 + 0j  # アンチエリアジング
+F[int(0.5 * N) + 1:] = 0 + 0j
 F_abs = np.abs(F)
 fft_time = time.time() - start
 print("fft time: {}[s]".format(fft_time))
