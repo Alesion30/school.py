@@ -1,5 +1,5 @@
 # %%
-# 標本化 高速フーリエ変換
+# 離散フーリエ変換 VS 高速フーリエ変換
 import numpy as np
 from numpy.fft import fft as FFT
 import matplotlib.pyplot as plt
