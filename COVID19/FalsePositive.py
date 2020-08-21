@@ -44,10 +44,10 @@ def acc(p, n, s=0.7, d=0.99):
     tn = max(n_n - fn, 0)
 
     # 陽性的中度
-    p_acc = round(tp / n_p * 100, 1)
+    p_acc = tp / n_p
 
     # 陰性的中度
-    n_acc = round(tn / n_n * 100, 1)
+    n_acc = tn / n_n
 
     return p_acc, n_acc
 
@@ -69,8 +69,26 @@ def main():
     print("検査数 {}人".format(n))
     print("-------------------------------")
     p_acc, n_acc = acc(p, n, s, d)
-    print("陽性的中率(予想) {}%".format(p_acc))
-    print("陰性的中率(予想) {}%".format(n_acc))
+    print("陽性的中率(予想) {}%".format(round(p_acc * 100, 1)))
+    print("陰性的中率(予想) {}%".format(round(n_acc * 100, 1)))
+    print("-------------------------------")
+
+    print("")
+
+    # Data for Tokyo on August 18
+    # https://stopcovid19.metro.tokyo.lg.jp/cards/positive-rate/
+    p = 0.015  # 陽性率 positivity
+    n = int(1.395e07)  # 検査数 number of tests
+
+    print("-------------------------------")
+    print("全東京都民をPCR検査した場合")
+    print("-------------------------------")
+    print("陽性率 {}%".format(p * 100))
+    print("検査数 {}人".format(n))
+    print("-------------------------------")
+    p_acc, n_acc = acc(p, n, s, d)
+    print("陽性的中率(予想) {}%".format(round(p_acc * 100, 1)))
+    print("陰性的中率(予想) {}%".format(round(n_acc * 100, 1)))
     print("-------------------------------")
 
     # # 検査数-偽陽性率 グラフ
@@ -112,8 +130,8 @@ def main():
         N_err.append([])
         for p in P:
             p_acc, n_acc = acc(p, n, s, d)
-            P_err[i].append(round(100 - p_acc))
-            N_err[i].append(round(100 - n_acc))
+            P_err[i].append(round(100 - p_acc * 100))
+            N_err[i].append(round(100 - n_acc * 100))
 
     plt.title("False Positive")
     plt.xlabel('positivity[%]')
