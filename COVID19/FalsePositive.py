@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def acc(p, n, s=0.7, d=0.99):
+def test_acc(p, n, s=0.7, d=0.99):
     """
     Calculate the accuracy of the inspection
 
@@ -68,7 +68,7 @@ def main():
     print("陽性率 {}%".format(p * 100))
     print("検査数 {}人".format(n))
     print("-------------------------------")
-    p_acc, n_acc = acc(p, n, s, d)
+    p_acc, n_acc = test_acc(p, n, s, d)
     print("陽性的中率(予想) {}%".format(round(p_acc * 100, 1)))
     print("陰性的中率(予想) {}%".format(round(n_acc * 100, 1)))
     print("-------------------------------")
@@ -86,7 +86,7 @@ def main():
     print("陽性率 {}%".format(p * 100))
     print("検査数 {}人".format(n))
     print("-------------------------------")
-    p_acc, n_acc = acc(p, n, s, d)
+    p_acc, n_acc = test_acc(p, n, s, d)
     print("陽性的中率(予想) {}%".format(round(p_acc * 100, 1)))
     print("陰性的中率(予想) {}%".format(round(n_acc * 100, 1)))
     print("-------------------------------")
@@ -100,7 +100,7 @@ def main():
     #     P_err.append([])
     #     N_err.append([])
     #     for n in N:
-    #         p_acc, n_acc = acc(p, n, s, d)
+    #         p_acc, n_acc = test_acc(p, n, s, d)
     #         P_err[i].append(round(100 - p_acc))
     #         N_err[i].append(round(100 - n_acc))
 
@@ -129,7 +129,7 @@ def main():
         P_err.append([])
         N_err.append([])
         for p in P:
-            p_acc, n_acc = acc(p, n, s, d)
+            p_acc, n_acc = test_acc(p, n, s, d)
             P_err[i].append(round(100 - p_acc * 100))
             N_err[i].append(round(100 - n_acc * 100))
 
