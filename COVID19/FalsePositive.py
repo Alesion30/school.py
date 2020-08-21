@@ -38,10 +38,10 @@ def acc(p, n, s=0.7, d=0.99):
     fn = round((1 / s - 1) * tp)
 
     # 間違って陽性だと判定された人数
-    fp = n_p - tp
+    fp = max(n_p - tp, 0)
 
     # 正しく陰性だと判定された人数
-    tn = n_n - fn
+    tn = max(n_n - fn, 0)
 
     # 陽性的中度
     p_acc = round(tp / n_p * 100, 1)
@@ -76,50 +76,50 @@ def main():
     # # 検査数-偽陽性率 グラフ
     # P = [0.01, 0.05, 0.1]  # 陽性率
     # N = np.arange(1e03, 1e05, 1e02)  # 検査数
-    # p_err = []  # 偽陽性率
-    # n_err = []  # 偽陰性率
+    # P_err = []  # 偽陽性率
+    # N_err = []  # 偽陰性率
     # for i, p in enumerate(P):
-    #     p_err.append([])
-    #     n_err.append([])
+    #     P_err.append([])
+    #     N_err.append([])
     #     for n in N:
-    #         a, b = acc(p, n, s, d)
-    #         p_err[i].append(round(100 - a))
-    #         n_err[i].append(round(100 - b))
+    #         p_acc, n_acc = acc(p, n, s, d)
+    #         P_err[i].append(round(100 - p_acc))
+    #         N_err[i].append(round(100 - n_acc))
 
-    # plt.title("Moderately Positive")
+    # plt.title("False Positive")
     # plt.xlabel('n')
     # plt.ylabel('error[%]')
     # for i, p in enumerate(P):
-    #     plt.plot(N, p_err[i], label="p={}".format(p))
+    #     plt.plot(N, P_err[i], label="p={}".format(p))
     # plt.legend()
     # plt.show()
 
-    # plt.title("Moderately Negative")
+    # plt.title("False Negative")
     # plt.xlabel('n')
     # plt.ylabel('error[%]')
     # for i, p in enumerate(P):
-    #     plt.plot(N, n_err[i], label="p={}".format(p))
+    #     plt.plot(N, N_err[i], label="p={}".format(p))
     # plt.legend()
     # plt.show()
 
     # 陽性率-偽陽性率 グラフ
-    P = np.arange(0.01, 0.5, 0.01)  # 陽性率
+    P = np.arange(0.01, 1.0, 0.01)  # 陽性率
     N = [1000, 5000, 10000]  # 検査数
-    p_err = []  # 偽陽性率
-    n_err = []  # 偽陰性率
+    P_err = []  # 偽陽性率
+    N_err = []  # 偽陰性率
     for i, n in enumerate(N):
-        p_err.append([])
-        n_err.append([])
+        P_err.append([])
+        N_err.append([])
         for p in P:
-            a, b = acc(p, n, s, d)
-            p_err[i].append(round(100 - a))
-            n_err[i].append(round(100 - b))
+            p_acc, n_acc = acc(p, n, s, d)
+            P_err[i].append(round(100 - p_acc))
+            N_err[i].append(round(100 - n_acc))
 
     plt.title("False Positive")
     plt.xlabel('positivity[%]')
     plt.ylabel('error[%]')
     for i, n in enumerate(N):
-        plt.plot(P * 100, p_err[i], label="n={}".format(n))
+        plt.plot(P * 100, P_err[i], label="n={}".format(n))
     plt.legend()
     plt.show()
 
@@ -127,7 +127,7 @@ def main():
     plt.xlabel('positivity[%]')
     plt.ylabel('error[%]')
     for i, n in enumerate(N):
-        plt.plot(P * 100, n_err[i], label="n={}".format(n))
+        plt.plot(P * 100, N_err[i], label="n={}".format(n))
     plt.legend()
     plt.show()
 
